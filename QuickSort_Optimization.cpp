@@ -25,7 +25,6 @@ pair<int,int> Partition(vector<int> &arr, int low, int high){
 
 }
 
-
 void QuickSort(vector<int> &arr, int low, int high){
     
     begin: 
@@ -37,6 +36,21 @@ void QuickSort(vector<int> &arr, int low, int high){
         low = pair.second+1;
         goto begin;
     }
+}
+
+bool isSorted(const vector<int>& arr){
+    for(size_t i=1;i<arr.size();i++){
+        if(arr[i-1] > arr[i])
+            return false;
+    }
+    return true;
+}
+
+void printArray(const vector<int>& arr){
+    for(size_t i=0;i<arr.size();i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
 }
 
 int main(){
@@ -65,32 +79,18 @@ int main(){
     mt19937 g(rd());
     shuffle(arr.begin(),arr.end(),g);
 
-    // Time Count
-
-    
-    
     int n = arr.size();
-
-    // cout<<"Original Array"<<endl;
-    // for(int i=0;i<n;i++)
-    //     cout<<arr[i]<<" ";
-    // cout<<endl;
-
+    cout<<"Is Sorted? "<< (isSorted(arr) ? "Yes" : "No");
+    
+    // Time Count
     auto start = chrono::high_resolution_clock::now();
 
     QuickSort(arr,0,n-1);
 
     auto end = chrono::high_resolution_clock::now();
-    
-    // cout<<"Sorted Array"<<endl;
-    // for(int i=0;i<n;i++)
-    //     cout<<arr[i]<<" ";
-    // cout<<endl;
-
-    
     chrono::duration<double, milli> duration = end - start;
-
+    
     cout<<endl<<"Running Time = "<<duration.count()<<" ms"<<endl;
     cout<<"Size of the Array = "<<arr.size()<<endl;
-
+    cout<<"Is Sorted? "<< (isSorted(arr) ? "Yes" : "No") <<endl;
 }

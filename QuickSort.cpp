@@ -28,20 +28,35 @@ void QuickSort(vector<int> &arr, int low, int high){
     }
 }
 
+bool isSorted(const vector<int>& arr){
+    for(size_t i=1;i<arr.size();i++){
+        if(arr[i-1] > arr[i])
+            return false;
+    }
+    return true;
+}
+
+void printArray(const vector<int>& arr){
+    for(size_t i=0;i<arr.size();i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
 int main(){
 
     vector<int> arr;
     for(int i=0;i<100000;i++)
         arr.push_back(i+1);
 
-    for(int i=0;i<5000;i++){ //inserting same element 
+    for(int i=0;i<5000;i++){ //inserting same element 5000 time
         arr.push_back(55);
         arr.push_back(999);
         arr.push_back(64874);
         arr.push_back(1342);
         arr.push_back(9577);
     }
-    for(int i=0;i<10000;i++){ //inserting same element 
+    for(int i=0;i<10000;i++){ //inserting same element 10000 time
         arr.push_back(76467);
         arr.push_back(99990);
         arr.push_back(6474);
@@ -53,33 +68,20 @@ int main(){
     random_device rd;
     mt19937 g(rd());
     shuffle(arr.begin(),arr.end(),g);
-
-    // Time Count
-
-    
-    
     int n = arr.size();
 
-    // cout<<"Original Array"<<endl;
-    // for(int i=0;i<n;i++)
-    //     cout<<arr[i]<<" ";
-    // cout<<endl;
+    cout<<"Is Sorted? "<< (isSorted(arr) ? "Yes" : "No");
 
+    // Time Count
     auto start = chrono::high_resolution_clock::now();
 
     QuickSort(arr,0,n-1);
 
     auto end = chrono::high_resolution_clock::now();
-    
-    // cout<<"Sorted Array"<<endl;
-    // for(int i=0;i<n;i++)
-    //     cout<<arr[i]<<" ";
-    // cout<<endl;
-
-    
     chrono::duration<double, milli> duration = end - start;
 
     cout<<endl<<"Running Time = "<<duration.count()<<" ms"<<endl;
     cout<<"Size of the Array = "<<arr.size()<<endl;
+    cout<<"Is Sorted? "<< (isSorted(arr) ? "Yes" : "No") <<endl;
 
 }
