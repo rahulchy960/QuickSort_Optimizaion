@@ -1,5 +1,3 @@
-# 🚀 QuickSort Comparison: Basic vs Optimized
-
 This repository contains two implementations of **QuickSort in C++**:
 
 1. **Basic QuickSort (Lomuto)**  
