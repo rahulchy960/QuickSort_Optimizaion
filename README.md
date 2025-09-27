@@ -1,5 +1,6 @@
 ## Live Demo
 
+App Repo: https://github.com/rahulchy960/sorting-visualizer
 Try it here: https://sorting-visualizer-three-rust.vercel.app/
 
 ## Algorithms
